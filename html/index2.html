@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>webPack配置proxy解决开发环境跨域问题</title>
+    <link rel="shortcut icon" href="../images/图标.png" type="image/x-icon">
+    <style>
+body{
+            background-image: url(../images/1.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: 100%;
+        }
+        .head{
+            margin: 20px;
+            background-color: white;
+            padding: 10px;
+        }
+        .s1{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        h4{
+            font-size: 30px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .p1{
+            margin-left: 20px;
+            margin-top: 0;
+        }
+        p{
+            width: 70%;
+            font-size: 18px;
+        }
+        img{
+            display: block;
+        }
+        
+        .d1{
+            color:#D4D4D4;background-color: #2B3A42;
+    width: 960px;
+    border-radius: 6px;
+    padding-left: 15px;
+    padding: 10px;
+    
+   text-indent: 16px;
+   font-size:17px;line-height:16px;
+   white-space: nowrap;
+   font-family:Consolas
+        }
+        ul{
+            font-size: 18px;
+        }
+        .head{
+            margin: 20px;
+            background-color: white;
+            padding: 10px;
+        }
+ .head{
+            position: relative;
+        }
+        .liuyan{
+            width: 100px;
+            height: 30px;
+            font-size: 25px;
+            font-weight: bold;
+            margin-left: 30px;
+            text-align: center;
+            border-bottom: 2px solid black;  
+           
+        }
+        .changyan{
+            background-color: red;
+            font-size: 20px;
+            
+            width: 108px;
+            height: 30px;
+           position: absolute;
+           left: 86%;
+           margin-top: 166px;
+           text-align: center;
+           border-radius: 10px;
+           
+          
+        }
+    </style>
+</head>
+
+    <body>
+        <div class="head"><span class="s1">您现在的位置是：</span>Sharing(来自转载)
+       <br>
+       <hr>
+       <h4>webPack配置proxy解决开发环境跨域问题</h4>
+       <p class="p1">2021-4-14</p>
+<p>&nbsp;WebPack中devServer的proxy代理其实是集成了http-proxy-middleware</br>
+
+    配置proxy 可以解决本地环境的跨域问题</p>
+    <p style="font-weight: bold;color:slategrey">在vue.config.js进行如下配置</p>
+    <div class="d1">
+        <div>
+            <span style="color:#4ec9b0;">&nbsp; module</span>.<span style="color:#4ec9b0;">exports</span>&nbsp;=&nbsp;{
+        </div>
+        <div>
+            &nbsp; &nbsp; &nbsp;&nbsp;<span style="color:#9cdcfe;">devServer</span><span style="color:#9cdcfe;">:</span>&nbsp;{
+        </div>
+        <div>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span style="color:#9cdcfe;">proxy</span><span style="color:#9cdcfe;">:</span>&nbsp;{
+        </div>
+        <div>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span style="color:#ce9178;">'/api'</span><span style="color:#9cdcfe;">:</span>&nbsp;{
+        </div>
+        <div>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span style="color:#9cdcfe;">target</span><span style="color:#9cdcfe;">:</span>&nbsp;<span style="color:#ce9178;">'http://test.com'</span>,
+        </div>
+        <div>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span style="color:#9cdcfe;">changeOrigin</span><span style="color:#9cdcfe;">:</span>&nbsp;<span style="color:#569cd6;">true</span>,
+        </div>
+        <div>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span style="color:#9cdcfe;">ws</span><span style="color:#9cdcfe;">:</span>&nbsp;<span style="color:#569cd6;">true</span>,
+        </div>
+        <div>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span style="color:#9cdcfe;">pathRewrite</span><span style="color:#9cdcfe;">:</span>&nbsp;{
+        </div>
+        <div>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span style="color:#ce9178;">'^/api/sl'</span><span style="color:#9cdcfe;">:</span>&nbsp;<span style="color:#ce9178;">'/api/tl'</span> 
+        </div>
+        <div>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; },
+        </div>
+        <div>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<span style="color:#9cdcfe;">secure</span><span style="color:#9cdcfe;">:</span>&nbsp;<span style="color:#569cd6;">false</span>,
+        </div>
+        <div>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+        </div>
+        <div>
+            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+        </div>
+        <div>
+            &nbsp; &nbsp; &nbsp; }
+        </div>
+        <div>
+            &nbsp; }
+        </div>
+</div>
+<p style="font-weight: bold;color:slategrey"> 配置说明</p>
+<ul>
+    <li>'/api': 请求匹配的字符串，如果请求是地址是..../api/test.php会被http://test.com/api/test.php 域名后面可以包含路径</li>
+    <li>target: 转发的域名或ip，如果target是域名，changeOrigin则需要设置为true</li>
+    <li> changeOrigin: 默认false，是否需要改变原始主机头为目标URL。设置为true, 本地就会虚拟一个服务器接收你的请求并代你发送该请求。</li>
+     <li> ws: 是否代理websockets</li>
+     <li>pathRewrite: 重写请求 如是源访问的地址是/api/sl 会被重写为/api/tl</li>
+     <li> secure: false,不检查安全问题。 设置后，可以接受运行在 HTTPS 上，可以使用无效证书的后端服务器</li>
+</ul>
+<p style="font-weight: bold;color:slategrey">参考</p>
+<ul style="box-sizing:border-box;margin:10px 0px 10px 20px;padding-left:0px;list-style-position:initial;list-style-image:initial;word-break:break-word;color:#404040;font-family:-apple-system, BlinkMacSystemFont, &quot;font-size:16px;white-space:normal;background-color:#FFFFFF;">
+	<li style="box-sizing:border-box;list-style-type:initial;">
+		<a href="https://webpack.docschina.org/configuration/dev-server/#devserver-proxy" target="_blank" rel="nofollow" style="box-sizing:border-box;color:#0681D0;text-decoration-line:none;background-color:transparent;outline:none;cursor:pointer;transition:color 0.3s ease 0s;touch-action:manipulation;"><span style="line-height:1;">官方文档</span></a> 
+	</li>
+	
+	<li style="box-sizing:border-box;list-style-type:initial;">
+		<a href="https://vuejs-templates.github.io/webpack/proxy.html" target="_blank" rel="nofollow" style="box-sizing:border-box;color:#0681D0;text-decoration-line:none;background-color:transparent;outline:none;cursor:pointer;transition:color 0.3s ease 0s;touch-action:manipulation;"><span style="line-height:1;">API Proxying During Development</span></a> 
+	</li>
+</ul>
+    </div>
+    <div class="head">
+        <div class="liuyan">
+            文章留言
+            </div>
+ <div class="changyan">
+     畅言一下
+ </div>
+ 
+ <!--PC版-->
+ <div id="SOHUCS" sid="2" style="z-index: 10;width: 90%;"></div>
+ <script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+ <script type="text/javascript">
+ window.changyan.api.config({
+ appid: 'cyvrowqwg',
+ conf: 'prod_e0b8d92cf33d2a2e8e19f18a3e4414ec'
+ });
+ </script>
+ 
+ </div>
+ 
+</body>
+</html>

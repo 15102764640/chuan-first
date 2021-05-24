@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js-数组去重的几种方法</title>
+    <link rel="shortcut icon" href="../images/图标.png" type="image/x-icon">
+    <style>
+         body{
+            background-image: url(../images/1.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: 100%;
+        }
+        .head{
+            margin: 20px;
+            background-color: white;
+            padding: 10px;
+        }
+        .s1{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        h4{
+            font-size: 30px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .p1{
+            margin-left: 20px;
+            margin-top: 0;
+        }
+        p{
+            width: 70%;
+            font-size: 18px;
+        }
+        img{
+            display: block;
+        }
+        .d1,.d2,.d3,.d4{
+            color:#D4D4D4;background-color: #2B3A42;
+    width: 960px;
+    border-radius: 6px;
+    padding-left: 15px;
+    padding: 10px;
+    
+   text-indent: 16px;
+   font-size:17px;line-height:16px;
+   white-space: nowrap;
+   font-family:Consolas;
+    
+        }
+        .head{
+            margin: 20px;
+            background-color: white;
+            padding: 10px;
+        }
+ .head{
+            position: relative;
+        }
+        .liuyan{
+            width: 100px;
+            height: 30px;
+            font-size: 25px;
+            font-weight: bold;
+            margin-left: 30px;
+            text-align: center;
+            border-bottom: 2px solid black;  
+           
+        }
+        .changyan{
+            background-color: red;
+            font-size: 20px;
+            
+            width: 108px;
+            height: 30px;
+           position: absolute;
+           left: 86%;
+           margin-top: 166px;
+           text-align: center;
+           border-radius: 10px;
+           
+          
+        }
+    </style>
+</head>
+<body>
+    <div class="head"><span class="s1">您现在的位置是：</span>Sharing(来自转载)
+        <br>
+        <hr>
+        <h4>js-数组去重的几种方法</h4>
+        <p class="p1">2021-4-14</p>
+        <p>>数组去重在很多面试中都会被问到，这里简单说一下数组去重的几种方式。</br>
+
+            有个朋友上次面试就被问到了，当时面试官给的题目是一句话数组去重(这里应该考的是es6 set去重，最简单的去重方法)</p>
+            <p>1、es6 set去重</p>
+            <p>ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。(可以用于去重)</br>
+
+                Set本身是一个构造函数，用来生成 Set 数据结构。</p>
+                <div class="d1">
+                    <div>
+                        &nbsp;&nbsp;<span style="color:#569cd6;">let</span>&nbsp;<span style="color:#9cdcfe;">arrayA</span>&nbsp;=&nbsp;[<span style="color:#b5cea8;">1</span>,<span style="color:#b5cea8;">1</span>,<span style="color:#b5cea8;">2</span>,<span style="color:#b5cea8;">2</span>,<span style="color:#b5cea8;">3</span>,<span style="color:#b5cea8;">3</span>,<span style="color:#ce9178;">'a'</span>,<span style="color:#ce9178;">'a'</span>,<span style="color:#ce9178;">'T'</span>,<span style="color:#ce9178;">'y'</span>,<span style="color:#ce9178;">'k'</span>,<span style="color:#ce9178;">'r'</span>,<span style="color:#ce9178;">'r'</span>];
+                    </div>
+                    <div>
+                        &nbsp; <span style="color:#4ec9b0;">console</span>.<span style="color:#dcdcaa;">log</span>([...<span style="color:#569cd6;">new</span>&nbsp;<span style="color:#4ec9b0;">Set</span>(<span style="color:#9cdcfe;">arrayA</span>)])
+                    </div>
+                </div>
+                <img src="../images/9-1.png.crdownload" >
+                <p>2、简单去重</p>
+                <p>创建一个空数组用来存放筛选后的元素  筛选的方法是通过比较遍历到当前元素是否在于新数组中 若不存在则push 存在则进行下一次循环</p>
+            <div class="d2"><div>
+                &nbsp;&nbsp;<span style="color:#569cd6;">const</span>&nbsp;<span style="color:#9cdcfe;">a</span>&nbsp;=&nbsp;[<span style="color:#ce9178;">'aaa'</span>,<span style="color:#ce9178;">'c43'</span>,<span style="color:#b5cea8;">5867</span>,<span style="color:#ce9178;">'wda'</span>,<span style="color:#ce9178;">'pps'</span>,<span style="color:#ce9178;">'c43'</span>,<span style="color:#ce9178;">'aaa'</span>,<span style="color:#ce9178;">'pps'</span>];
+            </div>
+            <div>
+                &nbsp;&nbsp;<span style="color:#dcdcaa;">arraydr</span>&nbsp;=&nbsp;(<span style="color:#9cdcfe;">array</span>)&nbsp;<span style="color:#569cd6;">=&gt;</span>&nbsp;{
+            </div>
+            <div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">let</span>&nbsp;<span style="color:#9cdcfe;">temp</span>&nbsp;=&nbsp;[];
+            </div>
+            <div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#4ec9b0;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#9cdcfe;">array</span>);
+            </div>
+            <div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#c586c0;">for</span>&nbsp;(<span style="color:#569cd6;">let</span>&nbsp;<span style="color:#9cdcfe;">i</span>&nbsp;<span style="color:#569cd6;">of</span>&nbsp;<span style="color:#9cdcfe;">array</span>)&nbsp;{
+            </div>
+            <div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#c586c0;">if</span>&nbsp;(<span style="color:#9cdcfe;">temp</span>.<span style="color:#dcdcaa;">indexOf</span>(<span style="color:#9cdcfe;">i</span>)&nbsp;===&nbsp;-<span style="color:#b5cea8;">1</span>)&nbsp;{
+            </div>
+            <div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">temp</span>.<span style="color:#dcdcaa;">push</span>(<span style="color:#9cdcfe;">i</span>);
+            </div>
+            <div>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+            </div>
+            <div>
+                &nbsp; &nbsp; &nbsp; }
+            </div>
+            <div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#4ec9b0;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#9cdcfe;">temp</span>);
+            </div>
+            <div>
+                &nbsp; }
+            </div>
+            <div>
+                &nbsp;&nbsp;<span style="color:#dcdcaa;">arraydr</span>(<span style="color:#9cdcfe;">a</span>);
+            </div></div> 
+            <img src="../images/9-2.png.crdownload" >
+            <p>3、相邻去重</p>
+            <p>首先利用sort进行排序 然后去比较相邻位的元素 若为true则 push  反之进行下一次循环比较</p>
+            <div class="d3">
+                <div>
+                    &nbsp;&nbsp;<span style="color:#569cd6;">const</span>&nbsp;<span style="color:#9cdcfe;">a</span>&nbsp;=&nbsp;[<span style="color:#ce9178;">'aaa'</span>,<span style="color:#ce9178;">'c43'</span>,<span style="color:#b5cea8;">5867</span>,<span style="color:#ce9178;">'wda'</span>,<span style="color:#ce9178;">'pps'</span>,<span style="color:#ce9178;">'c43'</span>,<span style="color:#ce9178;">'aaa'</span>,<span style="color:#ce9178;">'pps'</span>];
+                </div>
+                <div>
+                    &nbsp;&nbsp;<span style="color:#dcdcaa;">arraydr2</span>&nbsp;=&nbsp;(<span style="color:#9cdcfe;">array</span>)&nbsp;<span style="color:#569cd6;">=&gt;</span>&nbsp;{
+                </div>
+                <div>
+                    &nbsp;&nbsp;<span style="color:#569cd6;">&nbsp;&nbsp;&nbsp;&nbsp;let</span>&nbsp;<span style="color:#9cdcfe;">temp</span>&nbsp;=&nbsp;[];
+                </div>
+                <div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">array</span>.<span style="color:#dcdcaa;">sort</span>();
+                </div>
+                <div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#4ec9b0;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#9cdcfe;">array</span>);
+                </div>
+                <div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#c586c0;">for</span>&nbsp;(<span style="color:#569cd6;">let</span>&nbsp;<span style="color:#9cdcfe;">i</span>&nbsp;<span style="color:#569cd6;">in</span>&nbsp;<span style="color:#9cdcfe;">array</span>)&nbsp;{
+                </div>
+                <div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#c586c0;">&nbsp;&nbsp;&nbsp;&nbsp;if</span>&nbsp;(<span style="color:#9cdcfe;">i</span>&nbsp;===&nbsp;<span style="color:#b5cea8;">0</span>&amp;&amp;<span style="color:#9cdcfe;">array</span>[<span style="color:#9cdcfe;">i</span>]&nbsp;!==&nbsp;<span style="color:#9cdcfe;">array</span>[<span style="color:#9cdcfe;">i</span>+<span style="color:#b5cea8;">1</span>])&nbsp;{
+                </div>
+                <div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">&nbsp;&nbsp;&nbsp;&nbsp;temp</span>.<span style="color:#dcdcaa;">push</span>(<span style="color:#9cdcfe;">array</span>[<span style="color:#9cdcfe;">i</span>]);
+                </div>
+                <div>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }&nbsp;<span style="color:#c586c0;">else</span>&nbsp;<span style="color:#c586c0;">if</span>&nbsp;(<span style="color:#9cdcfe;">array</span>[<span style="color:#9cdcfe;">i</span>]&nbsp;!==&nbsp;<span style="color:#9cdcfe;">array</span>[<span style="color:#9cdcfe;">i</span>-<span style="color:#b5cea8;">1</span>]&amp;&amp;<span style="color:#9cdcfe;">array</span>[<span style="color:#9cdcfe;">i</span>]&nbsp;!==&nbsp;<span style="color:#9cdcfe;">array</span>[<span style="color:#9cdcfe;">i</span>+<span style="color:#b5cea8;">1</span>])&nbsp;{
+                </div>
+                <div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">temp</span>.<span style="color:#dcdcaa;">push</span>(<span style="color:#9cdcfe;">array</span>[<span style="color:#9cdcfe;">i</span>]);
+                </div>
+                <div>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }&nbsp;<span style="color:#c586c0;">else</span>&nbsp;<span style="color:#c586c0;">if</span>&nbsp;(<span style="color:#9cdcfe;">i</span>&nbsp;===&nbsp;<span style="color:#9cdcfe;">array</span>.<span style="color:#9cdcfe;">length</span>&nbsp;-&nbsp;<span style="color:#b5cea8;">1</span>&amp;&amp;<span style="color:#9cdcfe;">array</span>[<span style="color:#9cdcfe;">i</span>]&nbsp;!==&nbsp;<span style="color:#9cdcfe;">array</span>[<span style="color:#9cdcfe;">i</span>-<span style="color:#b5cea8;">1</span>])&nbsp;{
+                </div>
+                <div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">temp</span>.<span style="color:#dcdcaa;">push</span>(<span style="color:#9cdcfe;">array</span>[<span style="color:#9cdcfe;">i</span>]);
+                </div>
+                <div>
+                    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+                </div>
+                <div>
+                    &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;}
+                </div>
+                <div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#4ec9b0;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#9cdcfe;">temp</span>);
+                </div>
+                <div>
+                    &nbsp; }
+                </div>
+                <div>
+                    &nbsp;&nbsp;<span style="color:#dcdcaa;">arraydr2</span>(<span style="color:#9cdcfe;">a</span>);
+                </div>
+            </div>
+<img src="../images/9-3.png.crdownload" >
+
+<p>4、数组下标法</p>
+<p>该方法是利用indexOf求出元素在数组中首次出现的位置跟下标进行对比</p>
+<div class="d4"><div>
+    &nbsp;&nbsp;<span style="color:#569cd6;">const</span>&nbsp;<span style="color:#9cdcfe;">a</span>&nbsp;=&nbsp;[<span style="color:#ce9178;">'aaa'</span>,<span style="color:#ce9178;">'c43'</span>,<span style="color:#b5cea8;">5867</span>,<span style="color:#ce9178;">'wda'</span>,<span style="color:#ce9178;">'pps'</span>,<span style="color:#ce9178;">'c43'</span>,<span style="color:#ce9178;">'aaa'</span>,<span style="color:#ce9178;">'pps'</span>];
+</div>
+<div>
+    &nbsp;&nbsp;<span style="color:#dcdcaa;">arraydr3</span>&nbsp;=&nbsp;(<span style="color:#9cdcfe;">array</span>)&nbsp;<span style="color:#569cd6;">=&gt;</span>&nbsp;{
+</div>
+<div>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">let</span>&nbsp;<span style="color:#9cdcfe;">temp</span>&nbsp;=&nbsp;[];
+</div>
+<div>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#c586c0;">for</span>&nbsp;(<span style="color:#569cd6;">let</span>&nbsp;<span style="color:#9cdcfe;">i</span>&nbsp;=&nbsp;<span style="color:#b5cea8;">0</span>;<span style="color:#9cdcfe;">i</span>&nbsp;&lt;&nbsp;<span style="color:#9cdcfe;">array</span>.<span style="color:#9cdcfe;">length</span>;<span style="color:#9cdcfe;">i</span>++){
+</div>
+<div>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#c586c0;">if</span>&nbsp;(<span style="color:#9cdcfe;">array</span>.<span style="color:#dcdcaa;">indexOf</span>(<span style="color:#9cdcfe;">array</span>[<span style="color:#9cdcfe;">i</span>])&nbsp;==&nbsp;<span style="color:#9cdcfe;">i</span>)&nbsp;{
+</div>
+<div>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">temp</span>.<span style="color:#dcdcaa;">push</span>(<span style="color:#9cdcfe;">array</span>[<span style="color:#9cdcfe;">i</span>]);
+</div>
+<div>
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+</div>
+<div>
+    &nbsp; &nbsp; &nbsp; }
+</div>
+<div>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#4ec9b0;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#9cdcfe;">temp</span>);
+</div>
+<div>
+    &nbsp; }
+</div>
+<div>
+    &nbsp;&nbsp;<span style="color:#dcdcaa;">arraydr3</span>(<span style="color:#9cdcfe;">a</span>);
+</div></div>
+<img src="../images/9-4.png.crdownload" >
+<p>如果你还有更多的方法可以在下面留言哦。多多指教。</p>
+            </div>   
+            <div class="head">
+                <div class="liuyan">
+                    文章留言
+                    </div>
+         <div class="changyan">
+             畅言一下
+         </div>
+         
+         <!--PC版-->
+         <div id="SOHUCS" sid="2" style="z-index: 10;width: 90%;"></div>
+         <script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+         <script type="text/javascript">
+         window.changyan.api.config({
+         appid: 'cyvrowqwg',
+         conf: 'prod_e0b8d92cf33d2a2e8e19f18a3e4414ec'
+         });
+         </script>
+         
+         </div>
+</body>
+</html>

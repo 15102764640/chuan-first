@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>css绘制六边形</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        width: 100%;
+    }
+    .hexagon {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        left: 50px;
+        margin: 30px auto 0;
+    }
+    .square1, .square2, .square3 {
+        width: 100px;
+        height: 173.2px;
+        border: 2px solid rgb(194,194,194);
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform-origin: center center;
+        border-right-color: transparent;
+        border-left-color: transparent;
+        border-radius: 1px;
+    }
+    .square2 {
+        transform: rotateZ(60deg);
+    }
+    .square3 {
+        transform: rotateZ(-60deg);
+    }
+    .small-square1, .small-square2, .small-square3 {
+        width: 90px;
+        height: 155.8px;
+        position: absolute;
+        top: 11px;
+        left: 7px;
+        background: rgb(194,194,194);
+        border-radius: 1px;
+    }
+    .small-square2 {
+        transform: rotateZ(60deg);
+    }
+    .small-square3 {
+        transform: rotateZ(-60deg);
+    }
+</style>
+<body>
+    <div class="hexagon">
+        <div class="square1"></div>
+        <div class="square2"></div>
+        <div class="square3"></div>
+        <div class="small-square1"></div>
+        <div class="small-square2"></div>
+        <div class="small-square3"></div>
+    </div>
+</body>
+</html>

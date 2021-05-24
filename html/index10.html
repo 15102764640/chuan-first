@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VUE-自定义登录指令t</title>
+    <link rel="shortcut icon" href="../images/图标.png" type="image/x-icon">
+    <style>
+         body{
+            background-image: url(../images/1.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: 100%;
+        }
+        .head{
+            margin: 20px;
+            background-color: white;
+            padding: 10px;
+        }
+        .s1{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        h4{
+            font-size: 30px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .p1{
+            margin-left: 20px;
+            margin-top: 0;
+        }
+        p{
+            width: 70%;
+            font-size: 18px;
+        }
+        img{
+            display: block;
+        }
+        a{
+            text-decoration: none;
+        }
+        .d1,.d2{
+            color:#D4D4D4;background-color: #2B3A42;
+    width: 960px;
+    border-radius: 6px;
+    padding-left: 15px;
+    padding: 10px;
+    
+   text-indent: 16px;
+   font-size:17px;line-height:16px;
+   white-space: nowrap;
+   font-family:Consolas;
+    
+        }
+        .head{
+            margin: 20px;
+            background-color: white;
+            padding: 10px;
+        }
+ .head{
+            position: relative;
+        }
+        .liuyan{
+            width: 100px;
+            height: 30px;
+            font-size: 25px;
+            font-weight: bold;
+            margin-left: 30px;
+            text-align: center;
+            border-bottom: 2px solid black;  
+           
+        }
+        .changyan{
+            background-color: red;
+            font-size: 20px;
+            
+            width: 108px;
+            height: 30px;
+           position: absolute;
+           left: 86%;
+           margin-top: 166px;
+           text-align: center;
+           border-radius: 10px;
+           
+          
+        }
+    </style>
+</head>
+<body>
+    <div class="head"><span class="s1">您现在的位置是：</span>Sharing(来自转载)
+        <br>
+        <hr>
+        <h4>VUE-自定义登录指令</h4>
+        <p class="p1">2021-4-14</p>
+        <p>vue除了核心功能默认内置的指令 (v-model 和 v-show)，Vue 也允许注册自定义指令。注意，在 Vue2.0 中，代码复用和抽象的主要形式是组件。然而，有的情况下，你仍然需要对普通 DOM 元素进行底层操作，这时候就会用到自定义指令。比如登录  当你一个项目很多地方都用到了登录判断时，写成指令的方式是让你很省心的。</p>
+    <p>如下：</p>
+    <p>先在store里面添加登录模块并且添加state和getter，由于这里只讲登录状态，其他的登录信息没有写</p>   
+    <div class="d1">
+        <div>
+            <span style="color:#569CD6;font-size:14px;">const</span> <span style="color:#9CDCFE;font-size:14px;">state</span><span style="font-size:14px;"> = {</span> 
+        </div>
+        <div>
+            <br />
+        </div>
+        <div>
+            <span style="color:#9CDCFE;font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;isLogin:</span> <span style="color:#569CD6;font-size:14px;">false</span><span style="font-size:14px;">, </span><span style="color:#6A9955;font-size:14px;">// false-未登录 true-已登录</span> 
+        </div>
+        <div>
+            <span style="color:#9CDCFE;font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;showLogin:</span> <span style="color:#569CD6;font-size:14px;">false</span> <span style="color:#6A9955;font-size:14px;">// 登录弹窗状态</span> 
+        </div>
+        <div>
+            <span style="font-size:14px;">}</span> 
+        </div>
+    <br />
+        <div>
+            <span style="color:#569CD6;font-size:14px;">const</span> <span style="color:#9CDCFE;font-size:14px;">getters</span><span style="font-size:14px;"> = {</span> 
+        </div>
+    <br />
+        <div>
+            <span style="color:#DCDCAA;font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;getLogin</span><span style="font-size:14px;"> (</span><span style="color:#9CDCFE;font-size:14px;">state</span><span style="font-size:14px;">) {</span> 
+        </div>
+        <div>
+            <span style="color:#9CDCFE;font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;state</span><span style="font-size:14px;">.</span><span style="color:#9CDCFE;font-size:14px;">isLogin</span><span style="font-size:14px;"> = </span><span style="color:#9CDCFE;font-size:14px;">sessionStorage</span><span style="font-size:14px;">.</span><span style="color:#DCDCAA;font-size:14px;">getItem</span><span style="font-size:14px;">(</span><span style="color:#CE9178;font-size:14px;">'isLogin'</span><span style="font-size:14px;">)</span> 
+        </div>
+        <div>
+            <span style="color:#C586C0;font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return</span> <span style="color:#9CDCFE;font-size:14px;">state</span><span style="font-size:14px;">.</span><span style="color:#9CDCFE;font-size:14px;">isLogin</span> 
+        </div>
+        <div>
+            <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;},</span> 
+        </div>
+    <br />
+        <div>
+            <span style="color:#DCDCAA;font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;getShowLogin</span><span style="font-size:14px;"> (</span><span style="color:#9CDCFE;font-size:14px;">state</span><span style="font-size:14px;">) {</span> 
+        </div>
+        <div>
+            <span style="color:#C586C0;font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return</span> <span style="color:#9CDCFE;font-size:14px;">state</span><span style="font-size:14px;">.</span><span style="color:#9CDCFE;font-size:14px;">showLogin</span> 
+        </div>
+        <div>
+            <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;}</span> 
+        </div>
+        <div>
+            <span style="font-size:14px;">}</span> 
+        </div>
+    </div> 
+    <p>然后在main.js添加</p>
+    <div class="d2">
+        <div>
+            <span style="color:#6A9955;font-size:14px;">// 自定义判断是否登录跳转指令</span> 
+        </div>
+        <div>
+            <span style="color:#9CDCFE;font-size:14px;">Vue</span><span style="font-size:14px;">.</span><span style="color:#DCDCAA;font-size:14px;">directive</span><span style="font-size:14px;">(</span><span style="color:#CE9178;font-size:14px;">'login'</span><span style="font-size:14px;">, {</span> 
+        </div>
+        <div>
+            <span style="color:#DCDCAA;font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;inserted</span><span style="color:#9CDCFE;font-size:14px;">:</span><span style="font-size:14px;"> (</span><span style="color:#9CDCFE;font-size:14px;">el</span><span style="font-size:14px;">, </span><span style="color:#9CDCFE;font-size:14px;">binding</span><span style="font-size:14px;">) </span><span style="color:#569CD6;font-size:14px;">=&gt;</span><span style="font-size:14px;"> {</span> 
+        </div>
+        <div>
+            <span style="color:#9CDCFE;font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;el</span><span style="font-size:14px;">.</span><span style="color:#DCDCAA;font-size:14px;">addEventListener</span><span style="font-size:14px;">(</span><span style="color:#CE9178;font-size:14px;">'click'</span><span style="font-size:14px;">, </span><span style="color:#569CD6;font-size:14px;">function</span><span style="font-size:14px;"> (</span><span style="color:#9CDCFE;font-size:14px;">e</span><span style="font-size:14px;">) {</span> 
+        </div>
+        <div>
+            <span style="color:#C586C0;font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if</span><span style="font-size:14px;"> (!</span><span style="color:#9CDCFE;font-size:14px;">store</span><span style="font-size:14px;">.</span><span style="color:#9CDCFE;font-size:14px;">getters</span><span style="font-size:14px;">[</span><span style="color:#CE9178;font-size:14px;">'login/getLogin'</span><span style="font-size:14px;">]) {</span> 
+        </div>
+        <div>
+            <span style="color:#9CDCFE;font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;store</span><span style="font-size:14px;">.</span><span style="color:#DCDCAA;font-size:14px;">commit</span><span style="font-size:14px;">(</span><span style="color:#CE9178;font-size:14px;">'login/setShowLogin'</span><span style="font-size:14px;">, </span><span style="color:#569CD6;font-size:14px;">true</span><span style="font-size:14px;">)</span> 
+        </div>
+        <div>
+            <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</span> 
+        </div>
+        <div>
+            <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;})</span> 
+        </div>
+        <div>
+            <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;}</span> 
+        </div>
+        <div>
+            <span style="font-size:14px;">})</span> 
+        </div>
+    </div>
+    <p>然后在你需要的dom上加上v-login就可以了如<botton v-login /></p>
+    <p>一个指令定义对象可以提供如下几个钩子函数 (均为可选)：</br>
+
+        bind：只调用一次，指令第一次绑定到元素时调用。在这里可以进行一次性的初始化设置。</br>
+        
+        inserted：被绑定元素插入父节点时调用 (仅保证父节点存在，但不一定已被插入文档中)。</br>
+        
+        update：所在组件的 VNode 更新时调用，但是可能发生在其子 VNode 更新之前。指令的值可能发生了改变，也可能没有。但是你可以通过比较更新前后的值来忽略不必要的模板更新。</br>
+        
+        componentUpdated：指令所在组件的 VNode 及其子 VNode 全部更新后调用。</br>
+        
+        unbind：只调用一次，指令与元素解绑时调用。</br>
+        
+        还不清楚的可以去<a href="https://cn.vuejs.org/v2/guide/custom-directive.html" target="_blank"><span style="color:#E56600;">vue官网文档进行了解</span></a></p>
+    </div>
+    <div class="head">
+        <div class="liuyan">
+            文章留言
+            </div>
+ <div class="changyan">
+     畅言一下
+ </div>
+ 
+ <!--PC版-->
+ <div id="SOHUCS" sid="2" style="z-index: 10;width: 90%;"></div>
+ <script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+ <script type="text/javascript">
+ window.changyan.api.config({
+ appid: 'cyvrowqwg',
+ conf: 'prod_e0b8d92cf33d2a2e8e19f18a3e4414ec'
+ });
+ </script>
+ 
+ </div>
+</body>
+</html>

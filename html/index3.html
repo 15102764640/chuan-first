@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css3-3Dbanner图</title>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2506646_uohdc052x8.css">
+    <link rel="shortcut icon" href="../images/图标.png" type="image/x-icon">
+    <style>
+        body{
+            background-image: url(../images/1.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: 100%;
+        }
+        .head{
+            margin: 20px;
+            background-color: white;
+            padding: 10px;
+        }
+        .s1{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        h4{
+            font-size: 30px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .p1{
+            margin-left: 20px;
+            margin-top: 0;
+        }
+        p{
+            width: 70%;
+            font-size: 18px;
+        }
+        img{
+            display: block;
+        }
+        .d1,.d2{
+            color:#D4D4D4;background-color: #2B3A42;
+    width: 960px;
+    border-radius: 6px;
+    padding-left: 15px;
+    padding: 10px;
+    
+   text-indent: 16px;
+   font-size:17px;line-height:16px;
+   white-space: nowrap;
+   font-family:Consolas;
+        }
+  .yanshi{
+      height: 30px;
+      width: 100px;
+      background-color: red;
+      
+      font-size: 18px;
+     padding: 4px;
+      margin-top: 10px;
+      text-align: center;
+      line-height: 30px;
+      border-radius: 10px;
+      margin-left: 470px;
+      margin-bottom: 20px;
+      
+  }
+  a{
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+  }
+  .head{
+            margin: 20px;
+            background-color: white;
+            padding: 10px;
+        }
+ .head{
+            position: relative;
+        }
+        .liuyan{
+            width: 100px;
+            height: 30px;
+            font-size: 25px;
+            font-weight: bold;
+            margin-left: 30px;
+            text-align: center;
+            border-bottom: 2px solid black;  
+           
+        }
+        .changyan{
+            background-color: red;
+            font-size: 20px;
+            
+            width: 108px;
+            height: 30px;
+           position: absolute;
+           left: 86%;
+           margin-top: 166px;
+           text-align: center;
+           border-radius: 10px;
+           
+          
+        }
+</style>
+</head>
+<body>
+    <div class="head"><span class="s1">您现在的位置是：</span>Sharing(来自转载)
+        <br>
+        <hr>
+        <h4>css3-3Dbanner图</h4>
+        <p class="p1">2021-4-14</p>
+        <p>3Dbanner旋转</p>
+       <p>首先你得先构思出旋转体，一个正方体是六个面（因为这里不需要上下面，所以去掉,就只需要四个面），把正方体视为一个盒子模型（ul）</br>
+
+            然后在盒子下面有4个子元素(li),通过定位分别形成四个面。</br>
+            
+            最后让ul盒子绕y轴旋转来过渡所看到得banner视图。</p>
+            <p>过程中需要注意得:</p>
+            <p>1、正方体盒子需要加上 transform-style: preserve-3d;是的其子元素以3d呈现</br>
+                2、perspective 属性定义 3D 元素距视图的距离，以像素计。该属性允许您改变 3D 元素查看 3D 元素的视图。(可加可不加。)</p>
+
+<p>css:</p>
+            
+            <div class="d1">
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#D7BA7D;font-size:14px;">.banner</span><span style="font-size:14px;">{</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">width</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">400px</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">height</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">250px</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">position</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#CE9178;font-size:14px;">relative</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">margin</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">100px</span><span style="font-size:14px;">&nbsp;</span><span style="color:#CE9178;font-size:14px;">auto</span><span style="font-size:14px;">&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">0</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">perspective</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">1200px</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;}</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#D7BA7D;font-size:14px;">.banner</span><span style="font-size:14px;">&nbsp;</span><span style="color:#D7BA7D;font-size:14px;">ul</span><span style="font-size:14px;">&nbsp;{</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">position</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#CE9178;font-size:14px;">relative</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">width</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">400px</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">height</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">250px</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">transform-style</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#CE9178;font-size:14px;">preserve-3d</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">transition</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#CE9178;font-size:14px;">all</span><span style="font-size:14px;">&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">0.5s</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">transform-origin</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">50%</span><span style="font-size:14px;">&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">50%</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">animation</span><span style="font-size:14px;">:&nbsp;rotY&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">5s</span><span style="font-size:14px;">&nbsp;</span><span style="color:#CE9178;font-size:14px;">ease-in-out</span><span style="font-size:14px;">&nbsp;</span><span style="color:#CE9178;font-size:14px;">infinite</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;}</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#D7BA7D;font-size:14px;">.banner</span><span style="font-size:14px;">&nbsp;</span><span style="color:#D7BA7D;font-size:14px;">ul</span><span style="font-size:14px;">&nbsp;</span><span style="color:#D7BA7D;font-size:14px;">li</span><span style="font-size:14px;">&nbsp;{</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">list-style</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#CE9178;font-size:14px;">none</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">width</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">400px</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">height</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">250px</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">position</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#CE9178;font-size:14px;">absolute</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">left</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">0</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">top</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">0</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;}</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#D7BA7D;font-size:14px;">.banner</span><span style="font-size:14px;">&nbsp;</span><span style="color:#D7BA7D;font-size:14px;">ul</span><span style="font-size:14px;">&nbsp;</span><span style="color:#D7BA7D;font-size:14px;">li</span><span style="font-size:14px;">&nbsp;</span><span style="color:#D7BA7D;font-size:14px;">img</span><span style="font-size:14px;">&nbsp;{</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">width</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">100%</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">height</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">100%</span><span style="font-size:14px;">;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;}</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#C586C0;font-size:14px;">@keyframes</span><span style="font-size:14px;">&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">rotY</span><span style="font-size:14px;">&nbsp;{</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0%{&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">transform</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#DCDCAA;font-size:14px;">rotateY</span><span style="font-size:14px;">(</span><span style="color:#B5CEA8;font-size:14px;">0</span><span style="font-size:14px;">)&nbsp;}</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;100%{&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">transform</span><span style="font-size:14px;">:&nbsp;</span><span style="color:#DCDCAA;font-size:14px;">rotateY</span><span style="font-size:14px;">(</span><span style="color:#B5CEA8;font-size:14px;">360deg</span><span style="font-size:14px;">)&nbsp;}</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;}</span> 
+                </div>
+
+
+            </div>
+            <p>html:</p>
+            <div class="d2">
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#808080;font-size:14px;">&lt;</span><span style="color:#569CD6;font-size:14px;">div</span><span style="font-size:14px;">&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">class</span><span style="font-size:14px;">=</span><span style="color:#CE9178;font-size:14px;">"banner"</span><span style="color:#808080;font-size:14px;">&gt;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#808080;font-size:14px;">&lt;</span><span style="color:#569CD6;font-size:14px;">ul</span><span style="color:#808080;font-size:14px;">&gt;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#808080;font-size:14px;">&lt;</span><span style="color:#569CD6;font-size:14px;">li</span><span style="font-size:14px;">&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">style</span><span style="font-size:14px;">=</span><span style="color:#CE9178;font-size:14px;">"</span><span style="color:#CE9178;font-size:14px;">transform:&nbsp;translateZ(-200px)"</span><span style="color:#808080;font-size:14px;">&gt;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#808080;font-size:14px;">&lt;</span><span style="color:#569CD6;font-size:14px;">img</span><span style="font-size:14px;">&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">src</span><span style="font-size:14px;">=</span><span style="color:#CE9178;font-size:14px;">"http://www.zhangqinblog.com/templates/Images/news1.jpg"</span><span style="color:#808080;font-size:14px;">/&gt;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#808080;font-size:14px;">&lt;/</span><span style="color:#569CD6;font-size:14px;">li</span><span style="color:#808080;font-size:14px;">&gt;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#808080;font-size:14px;">&lt;</span><span style="color:#569CD6;font-size:14px;">li</span><span style="font-size:14px;">&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">style</span><span style="font-size:14px;">=</span><span style="color:#CE9178;font-size:14px;">"</span><span style="color:#CE9178;font-size:14px;">transform:translateX(-50%)&nbsp;rotateY(90deg);"</span><span style="color:#808080;font-size:14px;">&gt;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#808080;font-size:14px;">&lt;</span><span style="color:#569CD6;font-size:14px;">img</span><span style="font-size:14px;">&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">src</span><span style="font-size:14px;">=</span><span style="color:#CE9178;font-size:14px;">"http://www.zhangqinblog.com/templates/Images/banner2.jpg"</span><span style="color:#808080;font-size:14px;">/&gt;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#808080;font-size:14px;">&lt;/</span><span style="color:#569CD6;font-size:14px;">li</span><span style="color:#808080;font-size:14px;">&gt;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#808080;font-size:14px;">&lt;</span><span style="color:#569CD6;font-size:14px;">li</span><span style="font-size:14px;">&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">style</span><span style="font-size:14px;">=</span><span style="color:#CE9178;font-size:14px;">"</span><span style="color:#CE9178;font-size:14px;">transform:&nbsp;translateX(50%)&nbsp;rotateY(90deg);"</span><span style="color:#808080;font-size:14px;">&gt;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#808080;font-size:14px;">&lt;</span><span style="color:#569CD6;font-size:14px;">img</span><span style="font-size:14px;">&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">src</span><span style="font-size:14px;">=</span><span style="color:#CE9178;font-size:14px;">"http://www.zhangqinblog.com/files/learnShare/images/2019-8-28-2.jpg"</span><span style="color:#808080;font-size:14px;">/&gt;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#808080;font-size:14px;">&lt;/</span><span style="color:#569CD6;font-size:14px;">li</span><span style="color:#808080;font-size:14px;">&gt;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#808080;font-size:14px;">&lt;</span><span style="color:#569CD6;font-size:14px;">li</span><span style="font-size:14px;">&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">style</span><span style="font-size:14px;">=</span><span style="color:#CE9178;font-size:14px;">"</span><span style="color:#CE9178;font-size:14px;">transform:&nbsp;translateZ(200px)"</span><span style="color:#808080;font-size:14px;">&gt;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#808080;font-size:14px;">&lt;</span><span style="color:#569CD6;font-size:14px;">img</span><span style="font-size:14px;">&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">src</span><span style="font-size:14px;">=</span><span style="color:#CE9178;font-size:14px;">"http://www.zhangqinblog.com/files/learnShare/images/2019-9-9.png"</span><span style="color:#808080;font-size:14px;">/&gt;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#808080;font-size:14px;">&lt;/</span><span style="color:#569CD6;font-size:14px;">li</span><span style="color:#808080;font-size:14px;">&gt;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#808080;font-size:14px;">&lt;/</span><span style="color:#569CD6;font-size:14px;">ul</span><span style="color:#808080;font-size:14px;">&gt;</span> 
+                </div>
+                <div>
+                    <span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#808080;font-size:14px;">&lt;/</span><span style="color:#569CD6;font-size:14px;">div</span><span style="color:#808080;font-size:14px;">&gt;</span> 
+                </div>
+
+            </div>
+            <div class="yanshi"><a href="./yanshi1.html">
+            查看演示
+            </a>
+
+            </div>
+            </div>
+            <div class="head">
+                <div class="liuyan">
+                    文章留言
+                    </div>
+         <div class="changyan">
+             畅言一下
+         </div>
+         
+         <!--PC版-->
+         <div id="SOHUCS" sid="2" style="z-index: 10;width: 90%;"></div>
+         <script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+         <script type="text/javascript">
+         window.changyan.api.config({
+         appid: 'cyvrowqwg',
+         conf: 'prod_e0b8d92cf33d2a2e8e19f18a3e4414ec'
+         });
+         </script>
+         
+         </div>
+</div>
+</body>
+    

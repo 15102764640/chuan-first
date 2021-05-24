@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS种实现深拷贝的几种方法</title>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2506646_uohdc052x8.css">
+    <link rel="shortcut icon" href="../images/图标.png" type="image/x-icon">
+    <style>
+        body{
+            background-image: url(../images/1.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: 100%;
+        }
+        .head{
+            margin: 20px;
+            background-color: white;
+            padding: 10px;
+        }
+        .s1{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        h4{
+            font-size: 30px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .p1{
+            margin-left: 20px;
+            margin-top: 0;
+        }
+        p{
+            width: 70%;
+            font-size: 18px;
+        }
+        img{
+            display: block;
+        }
+        .d1,.d2,.d3{
+            color:#D4D4D4;background-color: #2B3A42;
+    width: 960px;
+    border-radius: 6px;
+    padding-left: 15px;
+    padding: 10px;
+    
+   text-indent: 16px;
+   font-size:17px;line-height:16px;
+   white-space: nowrap;
+   font-family:Consolas;
+    
+        }
+        .head{
+            position: relative;
+        }
+        .liuyan{
+            width: 100px;
+            height: 30px;
+            font-size: 25px;
+            font-weight: bold;
+            margin-left: 30px;
+            text-align: center;
+            border-bottom: 2px solid black;  
+           
+        }
+        .changyan{
+            background-color: red;
+            font-size: 20px;
+            
+            width: 108px;
+            height: 30px;
+           position: absolute;
+           left: 86%;
+           margin-top: 166px;
+           text-align: center;
+           border-radius: 10px;
+           
+          
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="head"><span class="s1">您现在的位置是：</span>Sharing(来自转载)
+   <br>
+   <hr>
+   <h4>JS种实现深拷贝的几种方法</h4>
+   <p class="p1">2021-4-14</p>
+   <p>基本数据类型：number，string，boolean，null，undefined，symbol以及未来ES10新增的BigInt(任意精度整数)七类。
+
+    引用数据类型：对象，数组，以及函数。
+    
+    基本数据类型名值存储在栈内存中；</p>
+    <img src="../images/1-1.png">
+    <p>引用数据类型名存在栈内存中，值存在于堆内存中，但是栈内存会提供一个引用的地址指向堆内存中的值。</p>
+    <img src="../images/1-2.png" >
+     <p>浅拷贝则是仅复制了栈内存、都指向同一个堆地址、所以都是同一个值。列如：</p>
+     <div class="d1">
+        <div>
+            <span style="color:#569cd6;">let</span>&nbsp;<span style="color:#9cdcfe;">c</span>&nbsp;=&nbsp;[<span style="color:#b5cea8;">1</span>&nbsp;,<span style="color:#b5cea8;">2</span>&nbsp;,&nbsp;<span style="color:#b5cea8;">3</span>,&nbsp;<span style="color:#b5cea8;">4</span>]
+        </div>
+        <div>
+            <span style="color:#569cd6;">let</span>&nbsp;<span style="color:#9cdcfe;">d</span>&nbsp;=&nbsp;<span style="color:#9cdcfe;">c</span> 
+        </div>
+        <div>
+            <span style="color:#9cdcfe;">d</span>[<span style="color:#b5cea8;">&nbsp;0&nbsp;</span>]&nbsp;=&nbsp;<span style="color:#b5cea8;">2</span> 
+        </div>
+        <div>
+            <span style="color:#9cdcfe;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#ce9178;">'c:'</span>,&nbsp;<span style="color:#9cdcfe;">c</span>,&nbsp;<span style="color:#ce9178;">'d:'</span>,&nbsp;<span style="color:#9cdcfe;">d</span>)
+        </div>
+     </div>
+     <p>d拷贝c后修改d[0],c的值也随之改变了，因为d只拷贝了c中属性的栈内存(堆地址)都指向同一个堆内存、其d中属性的值并没有真正意义上的拷贝</p>
+     <img src="../images/1-3.png" >
+<p>深拷贝其本身就是针对于引用数据类型而言的、接下来我们来说说深拷贝的几种实现方式</p>
+
+    <p>1、手写递归实现深拷贝</p>
+    <div class="d2">
+
+        <div>
+            <span style="color:#569cd6;">function</span>&nbsp;<span style="color:#dcdcaa;">deelCopyObj</span>(<span style="color:#9cdcfe;">obj</span>)&nbsp;{
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#c586c0;">if</span>&nbsp;(!<span style="color:#dcdcaa;">isObject</span>(<span style="color:#9cdcfe;">obj</span>))&nbsp;<span style="color:#c586c0;">return</span>&nbsp;<span style="color:#9cdcfe;">obj</span> 
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">let</span>&nbsp;<span style="color:#9cdcfe;">res</span>&nbsp;=&nbsp;<span style="color:#4ec9b0;">Array</span>.<span style="color:#dcdcaa;">isArray</span>(<span style="color:#9cdcfe;">obj</span>)&nbsp;?&nbsp;[]&nbsp;:&nbsp;{}
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#c586c0;">for</span>&nbsp;(<span style="color:#569cd6;">let</span>&nbsp;<span style="color:#9cdcfe;">key</span>&nbsp;<span style="color:#569cd6;">in</span>&nbsp;<span style="color:#9cdcfe;">obj</span>)&nbsp;{
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#c586c0;">if</span>&nbsp;(<span style="color:#4ec9b0;">Object</span>.<span style="color:#51b6c4;">prototype</span>.<span style="color:#dcdcaa;">hasOwnProperty</span>.<span style="color:#dcdcaa;">call</span>(<span style="color:#9cdcfe;">obj</span>,&nbsp;<span style="color:#9cdcfe;">key</span>))&nbsp;{
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#c586c0;">if</span>&nbsp;(<span style="color:#dcdcaa;">isObject</span>(<span style="color:#9cdcfe;">obj</span>[<span style="color:#9cdcfe;">key</span>]))&nbsp;{
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">res</span>[<span style="color:#9cdcfe;">key</span>]&nbsp;=&nbsp;<span style="color:#dcdcaa;">deelCopyObj</span>(<span style="color:#9cdcfe;">obj</span>[<span style="color:#9cdcfe;">key</span>])
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;<span style="color:#c586c0;">else</span>&nbsp;{
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">res</span>[<span style="color:#9cdcfe;">key</span>]&nbsp;=&nbsp;<span style="color:#9cdcfe;">obj</span>[<span style="color:#9cdcfe;">key</span>]
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;}
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#c586c0;">return</span>&nbsp;<span style="color:#9cdcfe;">res</span> 
+        </div>
+        <div>
+            }
+        </div>
+    <br />
+        <div>
+            <span style="color:#569cd6;">function</span>&nbsp;<span style="color:#dcdcaa;">isObject</span>(<span style="color:#9cdcfe;">obj</span>)&nbsp;{
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#c586c0;">return</span>&nbsp;<span style="color:#569cd6;">typeof</span>&nbsp;<span style="color:#9cdcfe;">obj</span>&nbsp;===&nbsp;<span style="color:#ce9178;">'object'</span>&nbsp;&amp;&amp;&nbsp;<span style="color:#9cdcfe;">obj</span>&nbsp;!=&nbsp;<span style="color:#569cd6;">null</span> 
+        </div>
+        <div>
+            }
+        </div>
+    <br />
+        <div>
+            <span style="color:#569cd6;">const</span>&nbsp;<span style="color:#51b6c4;">a</span>&nbsp;=&nbsp;[
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#b5cea8;">1</span>,&nbsp;<span style="color:#b5cea8;">2</span>,&nbsp;<span style="color:#ce9178;">'a'</span>,&nbsp;<span style="color:#ce9178;">'b'</span>,&nbsp;{
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ce9178;">'se'</span><span style="color:#9cdcfe;">:</span>&nbsp;<span style="color:#b5cea8;">333</span>,
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ce9178;">'as'</span><span style="color:#9cdcfe;">:</span>&nbsp;{&nbsp;<span style="color:#ce9178;">'ddd'</span><span style="color:#9cdcfe;">:</span>&nbsp;<span style="color:#ce9178;">'123'</span>&nbsp;},
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#ce9178;">'arr'</span><span style="color:#9cdcfe;">:</span>&nbsp;[&nbsp;<span style="color:#b5cea8;">1</span>,&nbsp;<span style="color:#b5cea8;">2</span>,&nbsp;<span style="color:#b5cea8;">3</span>,&nbsp;[&nbsp;<span style="color:#b5cea8;">8</span>,&nbsp;<span style="color:#b5cea8;">9</span>,&nbsp;<span style="color:#b5cea8;">10</span>&nbsp;],&nbsp;<span style="color:#b5cea8;">11</span>&nbsp;]
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;}
+        </div>
+        <div>
+            ]
+        </div>
+    <br />
+        <div>
+            <span style="color:#569cd6;">const</span>&nbsp;<span style="color:#51b6c4;">b</span>&nbsp;=&nbsp;<span style="color:#dcdcaa;">deelCopyObj</span>(<span style="color:#51b6c4;">a</span>)
+        </div>
+        <div>
+            <span style="color:#9cdcfe;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#ce9178;">'a:'</span>,&nbsp;<span style="color:#51b6c4;">a</span>,&nbsp;<span style="color:#ce9178;">'b:'</span>,&nbsp;<span style="color:#51b6c4;">b</span>)
+        </div>
+    <br />
+        <div>
+            <span style="color:#51b6c4;">b</span>[<span style="color:#b5cea8;">4</span>].<span style="color:#9cdcfe;">se</span>&nbsp;=&nbsp;<span style="color:#b5cea8;">555</span> 
+        </div>
+    </div>
+    <p>我们修改b[4].se测试下 并没有改变a的相应的值
+    </p>
+    <img src="../images/1-4.png">
+    <p>2、JSON.parse()和JSON.stringify()利用序列化和反序列化实现</p>
+    <div class="d3">
+        <div>
+            <span style="color:#569cd6;">function</span>&nbsp;<span style="color:#dcdcaa;">isObject</span>(<span style="color:#9cdcfe;">obj</span>)&nbsp;{
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#c586c0;">return</span>&nbsp;<span style="color:#569cd6;">typeof</span>&nbsp;<span style="color:#9cdcfe;">obj</span>&nbsp;===&nbsp;<span style="color:#ce9178;">'object'</span>&nbsp;&amp;&amp;&nbsp;<span style="color:#9cdcfe;">obj</span>&nbsp;!=&nbsp;<span style="color:#569cd6;">null</span> 
+        </div>
+        <div>
+            }
+        </div>
+    <br />
+        <div>
+            <span style="color:#569cd6;">function</span>&nbsp;<span style="color:#dcdcaa;">deelCopy</span>(<span style="color:#9cdcfe;">obj</span>)&nbsp;{
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#c586c0;">if</span>&nbsp;(!<span style="color:#dcdcaa;">isObject</span>(<span style="color:#9cdcfe;">obj</span>))&nbsp;<span style="color:#c586c0;">return</span>&nbsp;<span style="color:#9cdcfe;">obj</span> 
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#569cd6;">let</span>&nbsp;<span style="color:#9cdcfe;">res</span>&nbsp;=&nbsp;<span style="color:#9cdcfe;">JSON</span>.<span style="color:#dcdcaa;">stringify</span>(<span style="color:#9cdcfe;">obj</span>)
+        </div>
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#c586c0;">return</span>&nbsp;<span style="color:#9cdcfe;">JSON</span>.<span style="color:#dcdcaa;">parse</span>(<span style="color:#9cdcfe;">res</span>)
+        </div>
+        <div>
+            }
+        </div>
+    </div>
+<p style="color: red;font-weight: bold;">注意这种方法无法实现对象中方法的深拷贝</p>
+<p>3、我们还可以借用JQ的extend方法。$.extend( [deep ], target, object1 [, objectN ] )</br>
+
+    deep表示是否深拷贝，为true为深拷贝，为false，则为浅拷贝</br>
+    
+    target Object类型 目标对象，其他对象的成员属性将被附加到该对象上。</br>
+    
+    object1  objectN可选。 Object类型 第一个以及第N个被合并的对象。</p>
+    <p>4、通过Object.assign()拷贝</p>
+    <p style="color: red;font-weight: bold;">注意： 当对象只有一级属性为深拷贝；当对象中有多级属性时，二级属性后就是浅拷贝</p>
+<p>数组深拷贝的几种方法
+
+    1. concat(arr1, arr2,....)</br>
+    
+  注意：当数组中的元素均为一维是深拷贝，数组中元素一维以上是值的引用</br>
+    
+   2、slice(idx1, idx2)参数可以省略</br>
+    
+   1）没有参数是拷贝数组</br>
+    
+   2）只有一个参数是从该位置起到结束拷贝数组元素</br>
+    
+    3）两个参数，拷贝从起始位置到结束位置的元素（不包含结束位置的元素：含头不含尾）</p>
+    <p style="color: red;font-weight: bold;">注意：当数组中的元素均为一维是深拷贝，数组中元素一维以上是值的引用</p>
+    </div>
+   <div class="head">
+       <div class="liuyan">
+           文章留言
+           </div>
+<div class="changyan">
+    畅言一下
+</div>
+
+<!--PC版-->
+<div id="SOHUCS" sid="2" style="z-index: 10;width: 90%;"></div>
+<script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+window.changyan.api.config({
+appid: 'cyvrowqwg',
+conf: 'prod_e0b8d92cf33d2a2e8e19f18a3e4414ec'
+});
+</script>
+
+</div>
+
+
+
+
+
+</body>
+
+</html>

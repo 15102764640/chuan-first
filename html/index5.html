@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>css-实现蜂窝形状</title>
+    <link rel="shortcut icon" href="../images/图标.png" type="image/x-icon">
+    <style>
+ body{
+            background-image: url(../images/1.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: 100%;
+        }
+        .head{
+            margin: 20px;
+            background-color: white;
+            padding: 10px;
+        }
+        .s1{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        h4{
+            font-size: 30px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .p1{
+            margin-left: 20px;
+            margin-top: 0;
+        }
+        p{
+            width: 70%;
+            font-size: 18px;
+        }
+        .yanshi{
+      height: 30px;
+      width: 100px;
+      background-color: red;
+      
+      font-size: 18px;
+     padding: 4px;
+      margin-top: 10px;
+      text-align: center;
+      line-height: 30px;
+      border-radius: 10px;
+      margin-left: 470px;
+      margin-bottom: 20px;
+      
+  }
+  a{
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+  }
+  .head{
+            margin: 20px;
+            background-color: white;
+            padding: 10px;
+        }
+ .head{
+            position: relative;
+        }
+        .liuyan{
+            width: 100px;
+            height: 30px;
+            font-size: 25px;
+            font-weight: bold;
+            margin-left: 30px;
+            text-align: center;
+            border-bottom: 2px solid black;  
+           
+        }
+        .changyan{
+            background-color: red;
+            font-size: 20px;
+            
+            width: 108px;
+            height: 30px;
+           position: absolute;
+           left: 86%;
+           margin-top: 166px;
+           text-align: center;
+           border-radius: 10px;
+           
+          
+        }
+    </style>
+</head>
+<body>
+    <div class="head"><span class="s1">您现在的位置是：</span>Sharing(来自转载)
+        <br>
+        <hr>
+        <h4>css-实现蜂窝形状</h4>
+        <p class="p1">2021-4-14</p>
+        <p>方法一：</p>
+        <p>将六边形看成三个矩形的旋转拼接</p>
+        <img src="../images/5-1.png" >
+        <p>六边形每一个角为60°，根据计算可以得出高宽之间的关系为根号3 ： 1</p>
+        <div class="yanshi"><a href="./yanshi2.html">
+            查看演示一
+            </a>
+        </div>
+        <p>方法二：</p>
+        <p>利用border属性绘制， 中间一个矩形，在利用befor和after进行两边三角形的绘制</p>
+        <img src="../images/5-2.png" >
+        <p>（border是由三角形组成的，而不是矩形），可以看下将border的四边用不同的颜色来表示</p>
+        <img src="../images/5-3.png" >
+        <div class="yanshi"><a href="./yanshi3.html">
+            查看演示二
+            </a>
+        </div>
+
+
+
+    </div>
+    <div class="head">
+        <div class="liuyan">
+            文章留言
+            </div>
+ <div class="changyan">
+     畅言一下
+ </div>
+ 
+ <!--PC版-->
+ <div id="SOHUCS" sid="2" style="z-index: 10;width: 90%;"></div>
+ <script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+ <script type="text/javascript">
+ window.changyan.api.config({
+ appid: 'cyvrowqwg',
+ conf: 'prod_e0b8d92cf33d2a2e8e19f18a3e4414ec'
+ });
+ </script>
+ 
+ </div>
+ 
+</body>
+</html>

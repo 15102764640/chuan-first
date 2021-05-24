@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js事件循环(event loop)、宏任务与微任务</title>
+    <link rel="shortcut icon" href="../images/图标.png" type="image/x-icon">
+    <style>
+         body{
+            background-image: url(../images/1.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: 100%;
+        }
+        .head{
+            margin: 20px;
+            background-color: white;
+            padding: 10px;
+        }
+        .s1{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        h4{
+            font-size: 30px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .p1{
+            margin-left: 20px;
+            margin-top: 0;
+        }
+        p{
+            width: 70%;
+            font-size: 18px;
+        }
+        img{
+            display: block;
+        }
+        .d1{
+            color:#D4D4D4;background-color: #2B3A42;
+    width: 960px;
+    border-radius: 6px;
+    padding-left: 15px;
+    padding: 10px;
+    
+   text-indent: 16px;
+   font-size:17px;line-height:16px;
+   white-space: nowrap;
+   font-family:Consolas;
+    
+        }
+        .head{
+            margin: 20px;
+            background-color: white;
+            padding: 10px;
+        }
+ .head{
+            position: relative;
+        }
+        .liuyan{
+            width: 100px;
+            height: 30px;
+            font-size: 25px;
+            font-weight: bold;
+            margin-left: 30px;
+            text-align: center;
+            border-bottom: 2px solid black;  
+           
+        }
+        .changyan{
+            background-color: red;
+            font-size: 20px;
+            
+            width: 108px;
+            height: 30px;
+           position: absolute;
+           left: 86%;
+           margin-top: 166px;
+           text-align: center;
+           border-radius: 10px;
+           
+          
+        }
+    </style>
+</head>
+<body>
+    <div class="head"><span class="s1">您现在的位置是：</span>Sharing(来自转载)
+        <br>
+        <hr>
+        <h4>js事件循环(event loop)、宏任务与微任务</h4>
+        <p class="p1">2021-4-14</p>
+        <p style="font-weight: bold;color:slategrey">javascrip是单线程的，所谓的单线程是指js引擎中负责解释和实现js代码的线程只有一个，称之为主线程。</p>
+        <p>
+            js的任务分为 同步 和 异步 两种，它们的处理方式也不同，同步任务是直接在主线程上排队执行，异步任务则会被放到任务队列中，若有多个任务（异步任务）则要在任务队列中排队等待，任务队列类似一个缓冲区，任务下一步会被移到调用栈（call stack），然后主线程执行调用栈的任务。</br>
+
+单线程是指js引擎中负责解析执行js代码的线程只有一个（主线程），即每次只能做一件事，而我们知道一个ajax请求，主线程在等待它响应的同时是会去做其它事的，浏览器先在事件表注册ajax的回调函数，响应回来后回调函数被添加到任务队列中等待执行，不会造成线程阻塞，所以说js处理ajax请求的方式是异步的。
+        </p>
+        <p style="font-weight: bold;color:slategrey">事件循环机制：</p>
+        <ul>
+            <li>主线程执行 JavaScript 整体代码，形成执行上下文栈，当遇到各种任务源时将其所指定的异步任务挂起，接受到响应结果后将异步任务放入对应的任务队列中，直到执行上下文栈只剩全局上下文；</li>
+             <li>将微任务队列中的所有任务队列按优先级、单个任务队列的异步任务按先进先出（FIFO）的方式入栈并执行，直到清空所有的微任务队列；</li>
+             <li>将宏任务队列中优先级最高的任务队列中的异步任务按先进先出（FIFO）的方式入栈并执行；</li>
+             <li>重复第 2 3 步骤，直到清空所有的宏任务队列和微任务队列，全局上下文出栈。</li>
+        </ul>
+        <img src="../images/7-1.png" >
+        <img src="../images/7-2.png" >
+        <p style="font-weight: bold;color:slategrey">宏任务(macro-task)、微任务(micro-task)</p>
+<ul>
+    <li> 除了广义的同步任务和异步任务，JavaScript 单线程中的任务可以细分为宏任务和微任务。</li>
+    <li>macro-task包括：script(整体代码), setTimeout, setInterval, setImmediate, I/O, UI rendering。</li>
+    <li>micro-task包括：process.nextTick, Promise, Object.observe, MutationObserver。</li>
+</ul>
+<p style="font-weight: bold;color:slategrey">看列说明：</p>
+<div class="d1">
+    <div>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#ce9178;">'promise1'</span>)
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#dcdcaa;">resolve</span>()
+	</div>
+	<div>
+		}).<span style="color:#dcdcaa;">then</span>(()&nbsp;<span style="color:#569cd6;">=&gt;</span>&nbsp;{
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#ce9178;">'promise2'</span>)
+	</div>
+	<div>
+		})
+	</div>
+<br />
+	<div>
+		<span style="color:#9cdcfe;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#ce9178;">'start1'</span>)
+	</div>
+<br />
+	<div>
+		<span style="color:#dcdcaa;">setTimeout</span>(()&nbsp;<span style="color:#569cd6;">=&gt;</span>&nbsp;{
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#ce9178;">'a'</span>)
+	</div>
+	<div>
+		},<span style="color:#b5cea8;">2000</span>)
+	</div>
+<br />
+	<div>
+		<span style="color:#dcdcaa;">setTimeout</span>(()&nbsp;<span style="color:#569cd6;">=&gt;</span>&nbsp;{
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#ce9178;">'b'</span>)
+	</div>
+	<div>
+		},<span style="color:#b5cea8;">1000</span>)
+	</div>
+<br />
+	<div>
+		<span style="color:#dcdcaa;">setTimeout</span>(()&nbsp;<span style="color:#569cd6;">=&gt;</span>&nbsp;{
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#4ec9b0;">Promise</span>.<span style="color:#dcdcaa;">resolve</span>().<span style="color:#dcdcaa;">then</span>(()&nbsp;<span style="color:#569cd6;">=&gt;</span>&nbsp;{
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#ce9178;">'promiseA'</span>)
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;}).<span style="color:#dcdcaa;">then</span>(()&nbsp;<span style="color:#569cd6;">=&gt;</span>&nbsp;{
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#ce9178;">'promiseB'</span>)
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;})
+	</div>
+	<div>
+		})
+	</div>
+<br />
+	<div>
+		<span style="color:#4ec9b0;">Promise</span>.<span style="color:#dcdcaa;">resolve</span>().<span style="color:#dcdcaa;">then</span>(()&nbsp;<span style="color:#569cd6;">=&gt;</span>&nbsp;{
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#ce9178;">'promise88'</span>)
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#dcdcaa;">setTimeout</span>(()&nbsp;<span style="color:#569cd6;">=&gt;</span>&nbsp;{
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#b5cea8;">333</span>)
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;})
+	</div>
+	<div>
+		}).<span style="color:#dcdcaa;">then</span>(()&nbsp;<span style="color:#569cd6;">=&gt;</span>&nbsp;{
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#ce9178;">'promise2'</span>)
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#dcdcaa;">setTimeout</span>(()&nbsp;<span style="color:#569cd6;">=&gt;</span>&nbsp;{
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9cdcfe;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#b5cea8;">555</span>)
+	</div>
+	<div>
+		&nbsp;&nbsp;&nbsp;&nbsp;})
+	</div>
+	<div>
+		})
+	</div>
+<br />
+	<div>
+		<span style="color:#9cdcfe;">console</span>.<span style="color:#dcdcaa;">log</span>(<span style="color:#ce9178;">'start2'</span>)
+	</div>
+</div>
+  <ul>
+    <li>
+        <span style="line-height:2;">首先javascrip全局上下文入栈，遇到new&nbsp;Promise()同步任务执行打印promise1&nbsp;resolve()后&nbsp;.then异步函数被推入微任务队列</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">遇到console.log('start1')同步立即执行打印start1</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">遇到setTimeout&nbsp;异步任务2s后把要执行的任务推入宏任务队列中</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">遇到setTimeout&nbsp;异步任务1s后把要执行的任务推入宏任务队列中</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">遇到setTimeout&nbsp;异步任务立即把要执行的任务推入宏任务队列中</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">遇到Promise执行resolve后将第一个then方法推入微任务队列中</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">遇到console.log('start2')执行打印start2</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">此时打印了&nbsp;promise1、start1、start2</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">执行完当前主线程后依次执行当前微任务队列、直至清空、队列的结构是先进先出、所以依次如下</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">执行第一个微任务打印promise2</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">执行第二个微任务打印promise88。紧接着遇到setTimeout&nbsp;异步任务立即把要执行的任务推入宏任务队列中、将后面的then推入微任务队列中</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">执行第三个微任务打印promise2。紧接着遇到setTimeout&nbsp;异步任务立即把要执行的任务推入宏任务队列中</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">检查当前微任务队列是否为空、为空将宏任务队列中的下一个入栈执行</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">遇到promsie.resolve()执行将then方法推入微任务队列</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">清空当前微任务队列打印promiseA&nbsp;将后面的then又推入微任务队列</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">清空当前微任务队列打印promiseB</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">判断当前微任务队列是否为空、为空将下一个宏任务入栈并执行</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">打印333</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">打印555</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">打印a</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">打印b</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">全局上下文出栈，代码执行完毕。</span> 
+    </li>
+  </ul>
+  <p style="font-weight: bold;color:slategrey">最终结果为:</p>
+  <ul>
+    <li>
+        <span style="line-height:2;">promise1</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">start1</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">start2</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">promise2</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">promise88</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">promise2</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">promiseA</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">promiseB</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">333</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">555</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">b</span> 
+    </li>
+    <li>
+        <span style="line-height:2;">a</span> 
+    </li>
+  </ul>
+    </div>
+</div>
+
+    <div class="head">
+        <div class="liuyan">
+            文章留言
+            </div>
+ <div class="changyan">
+     畅言一下
+ </div>
+ 
+ <!--PC版-->
+ <div id="SOHUCS" sid="2" style="z-index: 10;width: 90%;"></div>
+ <script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+ <script type="text/javascript">
+ window.changyan.api.config({
+ appid: 'cyvrowqwg',
+ conf: 'prod_e0b8d92cf33d2a2e8e19f18a3e4414ec'
+ });
+ </script>
+ 
+ </div>
+</body>
+</html>

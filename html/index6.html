@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js-数据类型</title>
+    <link rel="shortcut icon" href="../images/图标.png" type="image/x-icon">
+    <style>
+          body{
+            background-image: url(../images/1.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+            background-size: 100%;
+        }
+        .head{
+            margin: 20px;
+            background-color: white;
+            padding: 10px;
+        }
+        .s1{
+            font-size: 18px;
+            font-weight: bold;
+        }
+        h4{
+            font-size: 30px;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        .p1{
+            margin-left: 20px;
+            margin-top: 0;
+        }
+        p{
+            width: 70%;
+            font-size: 18px;
+        }
+        img{
+            display: block;
+        }
+        .d1,.d2{
+            color:#D4D4D4;background-color: #2B3A42;
+    width: 960px;
+    border-radius: 6px;
+    padding-left: 15px;
+    padding: 10px;
+    
+   text-indent: 16px;
+   font-size:17px;line-height:16px;
+   white-space: nowrap;
+   font-family:Consolas;
+    
+        }
+        .head{
+            margin: 20px;
+            background-color: white;
+            padding: 10px;
+        }
+ .head{
+            position: relative;
+        }
+        .liuyan{
+            width: 100px;
+            height: 30px;
+            font-size: 25px;
+            font-weight: bold;
+            margin-left: 30px;
+            text-align: center;
+            border-bottom: 2px solid black;  
+           
+        }
+        .changyan{
+            background-color: red;
+            font-size: 20px;
+            
+            width: 108px;
+            height: 30px;
+           position: absolute;
+           left: 86%;
+           margin-top: 166px;
+           text-align: center;
+           border-radius: 10px;
+           
+          
+        }
+    </style>
+</head>
+<body>
+    <div class="head"><span class="s1">您现在的位置是：</span>Sharing(来自转载)
+        <br>
+        <hr>
+        <h4>js-数据类型</h4>
+        <p class="p1">2021-4-14</p>
+        <p>  JavaScript数据类型非常简洁，它只定义了6中基本数据类型</br>
+            null：空、无。表示不存在，当为对象的属性赋值为null，表示删除该属性</br>
+            undefined：未定义。当声明变量却没有赋值时会显示该值。可以为变量赋值为undefined</br>
+            number：数值。最原始的数据类型，表达式计算的载体</br>
+            string：字符串。最抽象的数据类型，信息传播的载体</br>
+            boolean：布尔值。最机械的数据类型，逻辑运算的载体</br>
+            object：对象。面向对象的基础</p>
+<div class="d1">
+    <div>
+		<span style="font-size:14px;">&nbsp;&nbsp;</span><span style="color:#4EC9B0;font-size:14px;">console</span><span style="font-size:14px;">.</span><span style="color:#DCDCAA;font-size:14px;">log</span><span style="font-size:14px;">(</span><span style="color:#569CD6;font-size:14px;">typeof</span><span style="font-size:14px;">&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">1</span><span style="font-size:14px;">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#6A9955;font-size:14px;">//&nbsp;返回字符串"number"&nbsp;&nbsp;</span> 
+	</div>
+	<div>
+		<span style="font-size:14px;">&nbsp;&nbsp;</span><span style="color:#4EC9B0;font-size:14px;">console</span><span style="font-size:14px;">.</span><span style="color:#DCDCAA;font-size:14px;">log</span><span style="font-size:14px;">(</span><span style="color:#569CD6;font-size:14px;">typeof</span><span style="font-size:14px;">&nbsp;</span><span style="color:#CE9178;font-size:14px;">"1"</span><span style="font-size:14px;">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#6A9955;font-size:14px;">//&nbsp;返回字符串"string"&nbsp;&nbsp;</span> 
+	</div>
+	<div>
+		<span style="font-size:14px;">&nbsp;&nbsp;</span><span style="color:#4EC9B0;font-size:14px;">console</span><span style="font-size:14px;">.</span><span style="color:#DCDCAA;font-size:14px;">log</span><span style="font-size:14px;">(</span><span style="color:#569CD6;font-size:14px;">typeof</span><span style="font-size:14px;">&nbsp;</span><span style="color:#569CD6;font-size:14px;">true</span><span style="font-size:14px;">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#6A9955;font-size:14px;">//&nbsp;返回字符串"boolean"&nbsp;&nbsp;</span> 
+	</div>
+	<div>
+		<span style="font-size:14px;">&nbsp;&nbsp;</span><span style="color:#4EC9B0;font-size:14px;">console</span><span style="font-size:14px;">.</span><span style="color:#DCDCAA;font-size:14px;">log</span><span style="font-size:14px;">(</span><span style="color:#569CD6;font-size:14px;">typeof</span><span style="font-size:14px;">&nbsp;{});&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#6A9955;font-size:14px;">//&nbsp;返回字符串"object"&nbsp;&nbsp;</span> 
+	</div>
+	<div>
+		<span style="font-size:14px;">&nbsp;&nbsp;</span><span style="color:#4EC9B0;font-size:14px;">console</span><span style="font-size:14px;">.</span><span style="color:#DCDCAA;font-size:14px;">log</span><span style="font-size:14px;">(</span><span style="color:#569CD6;font-size:14px;">typeof</span><span style="font-size:14px;">&nbsp;[]);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#6A9955;font-size:14px;">//&nbsp;返回字符串"object&nbsp;"&nbsp;&nbsp;</span> 
+	</div>
+	<div>
+		<span style="font-size:14px;">&nbsp;&nbsp;</span><span style="color:#4EC9B0;font-size:14px;">console</span><span style="font-size:14px;">.</span><span style="color:#DCDCAA;font-size:14px;">log</span><span style="font-size:14px;">(</span><span style="color:#569CD6;font-size:14px;">typeof</span><span style="font-size:14px;">&nbsp;</span><span style="color:#569CD6;font-size:14px;">function</span><span style="font-size:14px;">(){});&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#6A9955;font-size:14px;">//&nbsp;返回字符串"function"&nbsp;&nbsp;</span> 
+	</div>
+	<div>
+		<span style="font-size:14px;">&nbsp;&nbsp;</span><span style="color:#4EC9B0;font-size:14px;">console</span><span style="font-size:14px;">.</span><span style="color:#DCDCAA;font-size:14px;">log</span><span style="font-size:14px;">(</span><span style="color:#569CD6;font-size:14px;">typeof</span><span style="font-size:14px;">&nbsp;</span><span style="color:#569CD6;font-size:14px;">null</span><span style="font-size:14px;">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#6A9955;font-size:14px;">//&nbsp;返回字符串"object"&nbsp;&nbsp;</span> 
+	</div>
+	<div>
+		<span style="font-size:14px;">&nbsp;&nbsp;</span><span style="color:#4EC9B0;font-size:14px;">console</span><span style="font-size:14px;">.</span><span style="color:#DCDCAA;font-size:14px;">log</span><span style="font-size:14px;">(</span><span style="color:#569CD6;font-size:14px;">typeof</span><span style="font-size:14px;">&nbsp;</span><span style="color:#569CD6;font-size:14px;">undefined</span><span style="font-size:14px;">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#6A9955;font-size:14px;">//&nbsp;返回字符串"undefined"</span> 
+	</div>
+</div>
+<p>
+    js 强制类型转换  String() Boolean() Number()  parseInt() parseFloat()
+</p>
+<div class="d2">
+    <div>
+		<span style="font-size:14px;">&nbsp;&nbsp;</span><span style="color:#DCDCAA;font-size:14px;">a</span><span style="font-size:14px;">&nbsp;=&nbsp;()&nbsp;</span><span style="color:#569CD6;font-size:14px;">=&gt;</span><span style="font-size:14px;">&nbsp;{</span>
+	</div>
+	<div>
+		<span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#569CD6;font-size:14px;">const</span><span style="font-size:14px;">&nbsp;</span><span style="color:#9CDCFE;font-size:14px;">a</span><span style="font-size:14px;">&nbsp;=&nbsp;</span><span style="color:#B5CEA8;font-size:14px;">200</span><span style="font-size:14px;">;</span>
+	</div>
+	<div>
+		<span style="font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color:#4EC9B0;font-size:14px;">console</span><span style="font-size:14px;">.</span><span style="color:#DCDCAA;font-size:14px;">log</span><span style="font-size:14px;">(</span><span style="color:#569CD6;font-size:14px;">typeof</span><span style="font-size:14px;">&nbsp;</span><span style="color:#4EC9B0;font-size:14px;">String</span><span style="font-size:14px;">(</span><span style="color:#9CDCFE;font-size:14px;">a</span><span style="font-size:14px;">));&nbsp;&nbsp;&nbsp;</span><span style="color:#6A9955;font-size:14px;">//&nbsp;String()可以将null和undefined转换为字符串，但是没法转进制字符串</span> 
+	</div>
+	<div>
+		<span style="font-size:14px;">&nbsp;&nbsp;</span><span style="color:#4EC9B0;font-size:14px;">&nbsp;&nbsp;&nbsp;&nbsp;console</span><span style="font-size:14px;">.</span><span style="color:#DCDCAA;font-size:14px;">log</span><span style="font-size:14px;">(</span><span style="color:#569CD6;font-size:14px;">typeof</span><span style="font-size:14px;">&nbsp;</span><span style="color:#DCDCAA;font-size:14px;">toString</span><span style="font-size:14px;">(</span><span style="color:#9CDCFE;font-size:14px;">a</span><span style="font-size:14px;">));&nbsp;</span><span style="color:#6A9955;font-size:14px;">//&nbsp;.toString()可以将所有的的数据都转换为字符串，但是要排除null&nbsp;和&nbsp;undefined</span> 
+	</div>
+	<div>
+		<span style="font-size:14px;">&nbsp; }</span>
+	</div>
+	<div>
+		<span style="font-size:14px;">&nbsp;&nbsp;</span><span style="color:#DCDCAA;font-size:14px;">a</span><span style="font-size:14px;">();</span>
+	</div>
+</div>
+<p>1. 转成string类型： +（字符串连接符） 2..转成number类型：++/--(自增自减运算符) + - * / %(算术运算符) > < >= <= == != === !=== (关系运算符)</br>
+    2. 转成boolean类型：!（逻辑非运算符）
+  </p>
+
+        </div>
+        <div class="head">
+            <div class="liuyan">
+                文章留言
+                </div>
+     <div class="changyan">
+         畅言一下
+     </div>
+     
+     <!--PC版-->
+     <div id="SOHUCS" sid="2" style="z-index: 10;width: 90%;"></div>
+     <script charset="utf-8" type="text/javascript" src="https://cy-cdn.kuaizhan.com/upload/changyan.js" ></script>
+     <script type="text/javascript">
+     window.changyan.api.config({
+     appid: 'cyvrowqwg',
+     conf: 'prod_e0b8d92cf33d2a2e8e19f18a3e4414ec'
+     });
+     </script>
+     
+     </div>
+     
+</body>
+</html>
